@@ -1,0 +1,18 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "retail-etl-adf-pipeline"
+		},
+		"ls_adls_retail_sink_accountKey": {
+			"value": ""
+		},
+		"ls_retail_github_connector_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/"
+		},
+		"ls_adls_retail_sink_properties_typeProperties_url": {
+			"value": "https://stretaildataproj.dfs.core.windows.net/"
+		}
+	}
+}
