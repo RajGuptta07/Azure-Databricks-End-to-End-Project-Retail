@@ -1,5 +1,5 @@
 {
-	"name": "pipeline1",
+	"name": "pl-githubapi-to-adls-retail",
 	"properties": {
 		"activities": [
 			{
@@ -18,6 +18,19 @@
 					"method": "GET",
 					"url": "https://api.github.com/repos/RajGuptta07/Azure-Databricks-End-to-End-Project-Retail/contents/Data"
 				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "wa_retrieve_github_response",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": []
 			}
 		],
 		"annotations": []
