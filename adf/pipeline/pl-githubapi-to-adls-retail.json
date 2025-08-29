@@ -50,7 +50,7 @@
 								},
 								"ifTrueActivities": [
 									{
-										"name": "Copy data1",
+										"name": "cp_copy_githubdata_adls",
 										"type": "Copy",
 										"dependsOn": [],
 										"policy": {
@@ -62,8 +62,63 @@
 										},
 										"userProperties": [],
 										"typeProperties": {
-											"enableStaging": false
-										}
+											"source": {
+												"type": "DelimitedTextSource",
+												"storeSettings": {
+													"type": "HttpReadSettings",
+													"requestMethod": "GET"
+												},
+												"formatSettings": {
+													"type": "DelimitedTextReadSettings"
+												}
+											},
+											"sink": {
+												"type": "ParquetSink",
+												"storeSettings": {
+													"type": "AzureBlobFSWriteSettings"
+												},
+												"formatSettings": {
+													"type": "ParquetWriteSettings"
+												}
+											},
+											"enableStaging": false,
+											"translator": {
+												"type": "TabularTranslator",
+												"typeConversion": true,
+												"typeConversionSettings": {
+													"allowDataTruncation": true,
+													"treatBooleanAsNumber": false
+												}
+											}
+										},
+										"inputs": [
+											{
+												"referenceName": "ds_http_githubapi_retail",
+												"type": "DatasetReference",
+												"parameters": {
+													"p_github_relativepath": {
+														"value": "@replace(item().download_url, 'https://raw.githubusercontent.com/', '')\n",
+														"type": "Expression"
+													}
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "ds_adls_retail_github_sink",
+												"type": "DatasetReference",
+												"parameters": {
+													"p_target_folder": {
+														"value": "@if(\n    endswith(last(split(item().download_url, '/')), 'first.csv'),\n    split(last(split(item().download_url, '/')), '-')[0],\n    split(last(split(item().download_url, '/')),'.')[0]\n)\n",
+														"type": "Expression"
+													},
+													"p_target_file": {
+														"value": "@last(split(item().download_url , '/'))",
+														"type": "Expression"
+													}
+												}
+											}
+										]
 									}
 								]
 							}
