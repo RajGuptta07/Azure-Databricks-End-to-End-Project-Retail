@@ -11,34 +11,19 @@
 			"type": "secureString",
 			"metadata": "Secure string for 'accountKey' of 'ls_adls_retail_sink'"
 		},
-		"ls_retail_github_connector_properties_typeProperties_url": {
-			"type": "string",
-			"defaultValue": "https://raw.githubusercontent.com/"
-		},
 		"ls_adls_retail_sink_properties_typeProperties_url": {
 			"type": "string",
 			"defaultValue": "https://stretaildataproj.dfs.core.windows.net/"
+		},
+		"ls_retail_github_connector_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/"
 		}
 	},
 	"variables": {
 		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
 	},
 	"resources": [
-		{
-			"name": "[concat(parameters('factoryName'), '/ls_retail_github_connector')]",
-			"type": "Microsoft.DataFactory/factories/linkedServices",
-			"apiVersion": "2018-06-01",
-			"properties": {
-				"annotations": [],
-				"type": "HttpServer",
-				"typeProperties": {
-					"url": "[parameters('ls_retail_github_connector_properties_typeProperties_url')]",
-					"enableServerCertificateValidation": true,
-					"authenticationType": "Anonymous"
-				}
-			},
-			"dependsOn": []
-		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ls_adls_retail_sink')]",
 			"type": "Microsoft.DataFactory/factories/linkedServices",
@@ -57,39 +42,19 @@
 			"dependsOn": []
 		},
 		{
-			"name": "[concat(parameters('factoryName'), '/ds_http_githubapi_retail')]",
-			"type": "Microsoft.DataFactory/factories/datasets",
+			"name": "[concat(parameters('factoryName'), '/ls_retail_github_connector')]",
+			"type": "Microsoft.DataFactory/factories/linkedServices",
 			"apiVersion": "2018-06-01",
 			"properties": {
-				"linkedServiceName": {
-					"referenceName": "ls_retail_github_connector",
-					"type": "LinkedServiceReference"
-				},
-				"parameters": {
-					"p_github_relativepath": {
-						"type": "string"
-					}
-				},
 				"annotations": [],
-				"type": "DelimitedText",
+				"type": "HttpServer",
 				"typeProperties": {
-					"location": {
-						"type": "HttpServerLocation",
-						"relativeUrl": {
-							"value": "@dataset().p_github_relativepath",
-							"type": "Expression"
-						}
-					},
-					"columnDelimiter": ",",
-					"escapeChar": "\\",
-					"firstRowAsHeader": true,
-					"quoteChar": "\""
-				},
-				"schema": []
+					"url": "[parameters('ls_retail_github_connector_properties_typeProperties_url')]",
+					"enableServerCertificateValidation": true,
+					"authenticationType": "Anonymous"
+				}
 			},
-			"dependsOn": [
-				"[concat(variables('factoryId'), '/linkedServices/ls_retail_github_connector')]"
-			]
+			"dependsOn": []
 		},
 		{
 			"name": "[concat(parameters('factoryName'), '/ds_adls_retail_github_sink')]",
@@ -129,6 +94,41 @@
 			},
 			"dependsOn": [
 				"[concat(variables('factoryId'), '/linkedServices/ls_adls_retail_sink')]"
+			]
+		},
+		{
+			"name": "[concat(parameters('factoryName'), '/ds_http_githubapi_retail')]",
+			"type": "Microsoft.DataFactory/factories/datasets",
+			"apiVersion": "2018-06-01",
+			"properties": {
+				"linkedServiceName": {
+					"referenceName": "ls_retail_github_connector",
+					"type": "LinkedServiceReference"
+				},
+				"parameters": {
+					"p_github_relativepath": {
+						"type": "string"
+					}
+				},
+				"annotations": [],
+				"type": "DelimitedText",
+				"typeProperties": {
+					"location": {
+						"type": "HttpServerLocation",
+						"relativeUrl": {
+							"value": "@dataset().p_github_relativepath",
+							"type": "Expression"
+						}
+					},
+					"columnDelimiter": ",",
+					"escapeChar": "\\",
+					"firstRowAsHeader": true,
+					"quoteChar": "\""
+				},
+				"schema": []
+			},
+			"dependsOn": [
+				"[concat(variables('factoryId'), '/linkedServices/ls_retail_github_connector')]"
 			]
 		},
 		{
@@ -249,7 +249,7 @@
 																"type": "Expression"
 															},
 															"p_target_file": {
-																"value": "@last(split(item().download_url , '/'))",
+																"value": "@replace(last(split(item().download_url , '/')) ,'csv' ,'parquet' )",
 																"type": "Expression"
 															}
 														}
