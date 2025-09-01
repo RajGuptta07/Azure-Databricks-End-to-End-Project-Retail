@@ -113,7 +113,7 @@
 														"type": "Expression"
 													},
 													"p_target_file": {
-														"value": "@last(split(item().download_url , '/'))",
+														"value": "@replace(last(split(item().download_url , '/')) ,'csv' ,'parquet' )",
 														"type": "Expression"
 													}
 												}
