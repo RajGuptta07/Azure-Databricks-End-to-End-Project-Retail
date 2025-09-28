@@ -1,0 +1,35 @@
+{
+	"name": "ds_adls_retail_github_sink",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_adls_retail_sink",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_target_folder": {
+				"type": "string"
+			},
+			"p_target_file": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "Parquet",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobFSLocation",
+				"fileName": {
+					"value": "@dataset().p_target_file",
+					"type": "Expression"
+				},
+				"folderPath": {
+					"value": "@dataset().p_target_folder",
+					"type": "Expression"
+				},
+				"fileSystem": "source"
+			},
+			"compressionCodec": "snappy"
+		},
+		"schema": []
+	}
+}

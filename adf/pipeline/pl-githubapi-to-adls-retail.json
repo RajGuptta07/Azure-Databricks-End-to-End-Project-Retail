@@ -1,0 +1,132 @@
+{
+	"name": "pl-githubapi-to-adls-retail",
+	"properties": {
+		"activities": [
+			{
+				"name": "wa_retrieve_github_response",
+				"type": "WebActivity",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "GET",
+					"url": "https://api.github.com/repos/RajGuptta07/Azure-Databricks-End-to-End-Project-Retail/contents/Data"
+				}
+			},
+			{
+				"name": "fe_iterate_github_response",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "wa_retrieve_github_response",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@json(activity('wa_retrieve_github_response').output.Response)",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "if_validate_api_data",
+							"type": "IfCondition",
+							"dependsOn": [],
+							"userProperties": [],
+							"typeProperties": {
+								"expression": {
+									"value": "@or(\n    endswith(last(split(item().download_url, '/')) ,'first.csv'),\n    endswith(last(split(item().download_url, '/')) ,'regions.csv')\n\n)\n",
+									"type": "Expression"
+								},
+								"ifTrueActivities": [
+									{
+										"name": "cp_copy_githubdata_adls",
+										"type": "Copy",
+										"dependsOn": [],
+										"policy": {
+											"timeout": "0.12:00:00",
+											"retry": 0,
+											"retryIntervalInSeconds": 30,
+											"secureOutput": false,
+											"secureInput": false
+										},
+										"userProperties": [],
+										"typeProperties": {
+											"source": {
+												"type": "DelimitedTextSource",
+												"storeSettings": {
+													"type": "HttpReadSettings",
+													"requestMethod": "GET"
+												},
+												"formatSettings": {
+													"type": "DelimitedTextReadSettings"
+												}
+											},
+											"sink": {
+												"type": "ParquetSink",
+												"storeSettings": {
+													"type": "AzureBlobFSWriteSettings"
+												},
+												"formatSettings": {
+													"type": "ParquetWriteSettings"
+												}
+											},
+											"enableStaging": false,
+											"translator": {
+												"type": "TabularTranslator",
+												"typeConversion": true,
+												"typeConversionSettings": {
+													"allowDataTruncation": true,
+													"treatBooleanAsNumber": false
+												}
+											}
+										},
+										"inputs": [
+											{
+												"referenceName": "ds_http_githubapi_retail",
+												"type": "DatasetReference",
+												"parameters": {
+													"p_github_relativepath": {
+														"value": "@replace(item().download_url, 'https://raw.githubusercontent.com/', '')\n",
+														"type": "Expression"
+													}
+												}
+											}
+										],
+										"outputs": [
+											{
+												"referenceName": "ds_adls_retail_github_sink",
+												"type": "DatasetReference",
+												"parameters": {
+													"p_target_folder": {
+														"value": "@if(\n    endswith(last(split(item().download_url, '/')), 'first.csv'),\n    split(last(split(item().download_url, '/')), '-')[0],\n    split(last(split(item().download_url, '/')),'.')[0]\n)\n",
+														"type": "Expression"
+													},
+													"p_target_file": {
+														"value": "@replace(last(split(item().download_url , '/')) ,'csv' ,'parquet' )",
+														"type": "Expression"
+													}
+												}
+											}
+										]
+									}
+								]
+							}
+						}
+					]
+				}
+			}
+		],
+		"annotations": []
+	}
+}

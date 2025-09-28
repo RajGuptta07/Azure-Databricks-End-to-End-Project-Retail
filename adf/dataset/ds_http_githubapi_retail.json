@@ -1,0 +1,30 @@
+{
+	"name": "ds_http_githubapi_retail",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "ls_retail_github_connector",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"p_github_relativepath": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "HttpServerLocation",
+				"relativeUrl": {
+					"value": "@dataset().p_github_relativepath",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	}
+}
