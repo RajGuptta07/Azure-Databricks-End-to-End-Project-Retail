@@ -83,16 +83,22 @@ Azure-Databricks-End-to-End-Project-Retail/
    - Sequential & parallel execution for efficiency  
 
 ### Azure Rescources 
-![Azure Rescources](images/Resources.png.png)
+![Azure Rescources](images/Resources.png)
 
 ### Azure DataFactory 
-![Azure Rescources](images/Azure_DataFactory.png)
+![Azure DataFactory](images/Azure_DataFactory.png)
 
 ### Azure DataBricks 
-![Azure Rescources](images/All_Notebooks.png)
+![Azure DataBricks](images/All_Notebooks.png)
 
 ### Azure Container 
-![Azure Rescources](images/Project_Container.png)
+![Azure Container](images/Project_Container.png)
+
+### Azure Final_Notebook_Implementation 
+![Azure Final_Notebook_Implementation](images/Final_Code.png)
+
+### Azure Pipeline_Orchestration 
+![Azure Pipeline_Orchestration](images/orchestration.png)
 
 ### 📌 Project Scope
 
