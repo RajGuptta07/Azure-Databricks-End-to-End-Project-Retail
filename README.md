@@ -114,7 +114,8 @@ Azure-Databricks-End-to-End-Project-Retail/
 
 
 
-
+# 👨‍💻 About the Author
+I am Raj Gupta, a passionate Data Engineer and MSc Data Science student with hands on experience in building end to end data pipelines using Azure Data Factory, Databricks, and ADLS Gen2. I enjoy solving real-world data challenges, designing scalable and efficient workflows, and exploring modern data engineering tools to deliver high quality, analytics ready solutions.
 
 
 
