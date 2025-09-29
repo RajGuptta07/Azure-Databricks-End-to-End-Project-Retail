@@ -44,17 +44,17 @@ Azure-Databricks-End-to-End-Project-Retail/
 
 # 🛠 Tech Stack & Tools
 
- **Cloud Platform**: Microsoft Azure  
- **Data Storage**: Azure Data Lake Storage Gen2 (ADLS Gen2)  
- **Data Ingestion & Orchestration**: Azure Data Factory (ADF) – Web, ForEach, If, Copy activities  
- **Data Processing & Transformation**: Azure Databricks (with Unity Catalog)  
- **File Formats**: CSV (raw data), Parquet (ingestion), Delta Lake (Bronze, Silver, Gold layers)  
- **Data Modeling**: Star Schema, SCD Type 1 (PySpark Merge), SCD Type 2 (Delta Live Tables)  
- **Programming Language**: PySpark (Python APIs for Spark)  
- **Workflow Orchestration**: Databricks Jobs (parallel & sequential execution)  
- **Version Control**: Git & GitHub integration  
- **Visualization**: Architecture Diagram (`Retail_Project_Architecture.png`)  
- **Development Environment**: VS Code, Databricks Notebooks  
+☁️**Cloud Platform**: Microsoft Azure  
+💾**Data Storage**: Azure Data Lake Storage Gen2 (ADLS Gen2)  
+🔄**Data Ingestion & Orchestration**: Azure Data Factory (ADF) – Web, ForEach, If, Copy activities  
+🛠**Data Processing & Transformation**: Azure Databricks (with Unity Catalog)  
+📂**File Formats**: CSV (raw data), Parquet (ingestion), Delta Lake (Bronze, Silver, Gold layers)  
+🗄**Data Modeling**: Star Schema, SCD Type 1 (PySpark Merge), SCD Type 2 (Delta Live Tables)  
+🐍**Programming Language**: PySpark (Python APIs for Spark)  
+⏱**Workflow Orchestration**: Databricks Jobs (parallel & sequential execution)  
+🔧**Version Control**: Git & GitHub integration  
+📊**Visualization**: Architecture Diagram (`Retail_Project_Architecture.png`)  
+💻**Development Environment**: VS Code, Databricks Notebooks  
 
 
 
