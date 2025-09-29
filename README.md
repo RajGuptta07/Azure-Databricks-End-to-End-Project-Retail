@@ -84,7 +84,33 @@ Azure-Databricks-End-to-End-Project-Retail/
 
 
 
+# 📌 Project Scope
 
+🔄 Built an end-to-end retail data pipeline: GitHub CSV → ADLS Gen2 → Databricks.
+
+🟤 Implemented Bronze-Silver-Gold layers for structured processing.
+
+🛠 Used Databricks for data cleaning, transformation, and modeling.
+
+📊 Modeled data for analytics: Star Schema, SCD Type 1 & 2.
+
+⏱ Orchestrated workflows via Databricks Jobs (sequential & parallel).
+
+🔧 Integrated Git/GitHub for version control and automation.
+
+# 💡 What I Learned
+
+☁️ Hands-on Azure Data Factory (ADF) activities & automation.
+
+💾 Working with ADLS Gen2 and Parquet/Delta formats.
+
+🐍 Data cleaning & transformation in Databricks using PySpark.
+
+🗄 Data modeling: Star Schema, SCD Type 1 & 2.
+
+⏱ Pipeline orchestration and workflow automation.
+
+📌 Best practices for scalable, modular, analytics-ready pipelines.
 
 
 
