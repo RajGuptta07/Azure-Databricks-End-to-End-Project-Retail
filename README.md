@@ -8,7 +8,7 @@ Built an end to end retail data pipeline using Azure Data Factory, Databricks, a
 ![Architecture Diagram](Retail_Project_Architecture.png)
 
 
-# 📂 Project Structure
+## 📂 Project Structure
 
 ```
 Azure-Databricks-End-to-End-Project-Retail/
@@ -42,7 +42,7 @@ Azure-Databricks-End-to-End-Project-Retail/
 ```
 
 
-# 🛠 Tech Stack & Tools
+## 🛠 Tech Stack & Tools
 
 ☁️**Cloud Platform**: Microsoft Azure  
 💾**Data Storage**: Azure Data Lake Storage Gen2 (ADLS Gen2)  
@@ -57,7 +57,7 @@ Azure-Databricks-End-to-End-Project-Retail/
 💻**Development Environment**: VS Code, Databricks Notebooks  
 
 
-# 🔄 How It Works (Pipeline Flow)
+### 🔄 How It Works (Pipeline Flow)
 
 1. ### 📥 Data Ingestion (ADF)  
    - CSVs from GitHub → ADLS Gen2 using Web, ForEach, If, Copy activities  
@@ -82,9 +82,19 @@ Azure-Databricks-End-to-End-Project-Retail/
    - Databricks Jobs manage Bronze → Silver → Gold pipeline  
    - Sequential & parallel execution for efficiency  
 
+### Azure Rescources 
+![Azure Rescources](images/Resources.png.png)
 
+### Azure DataFactory 
+![Azure Rescources](images/Azure_DataFactory.png)
 
-# 📌 Project Scope
+### Azure DataBricks 
+![Azure Rescources](images/All_Notebooks.png)
+
+### Azure Container 
+![Azure Rescources](images/Project_Container.png)
+
+### 📌 Project Scope
 
 🔄 Built an end-to-end retail data pipeline: GitHub CSV → ADLS Gen2 → Databricks.
 
@@ -98,7 +108,7 @@ Azure-Databricks-End-to-End-Project-Retail/
 
 🔧 Integrated Git/GitHub for version control and automation.
 
-# 💡 What I Learned
+### 💡 What I Learned
 
 ☁️ Hands-on Azure Data Factory (ADF) activities & automation.
 
@@ -114,7 +124,7 @@ Azure-Databricks-End-to-End-Project-Retail/
 
 
 
-# 👨‍💻 About the Author
+### 👨‍💻 About the Author
 I am Raj Gupta, a passionate Data Engineer and MSc Data Science student with hands on experience in building end to end data pipelines using Azure Data Factory, Databricks, and ADLS Gen2. I enjoy solving real-world data challenges, designing scalable and efficient workflows, and exploring modern data engineering tools to deliver high quality, analytics ready solutions.
 
 
