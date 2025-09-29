@@ -59,26 +59,26 @@ Azure-Databricks-End-to-End-Project-Retail/
 
 # 🔄 How It Works (Pipeline Flow)
 
-1. # 📥 Data Ingestion (ADF)  
+1. ### 📥 Data Ingestion (ADF)  
    - CSVs from GitHub → ADLS Gen2 using Web, ForEach, If, Copy activities  
    - GitHub integration ensures version control & automation  
 
-2. # 🟤 Bronze Layer (Databricks Autoloader)
+2. ### 🟤 Bronze Layer (Databricks Autoloader)
    - Parameterized Autoloader loads datasets (customers, orders, products)  
    - Stored in **Parquet format** for efficient, typed storage  
 
-3. # ⚪ Silver Layer (Data Cleaning & Transformation)
+3. ### ⚪ Silver Layer (Data Cleaning & Transformation)
    - Customer → Full name & email domain extraction  
    - Products → Standardized brands, applied discounts  
    - Orders → Corrected data types, rankings, and date features  
    - Registered in Unity Catalog  
 
-4. # 🟡 Gold Layer (Modeling & Analytics)
+4. ### 🟡 Gold Layer (Modeling & Analytics)
    - Customers → **SCD Type 1** (PySpark merge)  
    - Products → **SCD Type 2** (Delta Live Tables)  
    - Orders → **Star Schema**: Fact Orders + Customer & Product Dimensions  
 
-5. # ⏱ Workflow Orchestration
+5. ### ⏱ Workflow Orchestration
    - Databricks Jobs manage Bronze → Silver → Gold pipeline  
    - Sequential & parallel execution for efficiency  
 
